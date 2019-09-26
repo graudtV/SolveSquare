@@ -1,6 +1,6 @@
 /*!
  * \file
- * \version 1.0
+ * \version 1.1 Теперь ввод реализуется через функцию getNewData
  *
  * \brief Файл с примером работы с функцией SolveSquare()
  * 
@@ -11,20 +11,23 @@
  * вычисляет корни соответсвующего квадратного уравнения
  */
 
-#include "stdio.h"
+#include <stdio.h>
+#include "stdlib.h" //for function free()
 #include "SolveSquare.h"
+#include "Input.h"
 
 #define bool short //!< Введено для удобства, т.к. в C нет типа bool.
 #define true 1
 #define false 0
 
+
 /*!
  * \brief Включает/выключает режим юнит-тестирования функции SolveSquare()
  *
  * При значении 0 тест выключен.
- * При значении 1 - включен
+ * При значении 1 - включен1
  */
-#define TEST_SOLVESQUARE 0
+#define TEST_SOLVESQUARE 1
 
 #if (TEST_SOLVESQUARE)
 int testSolveSquare();
@@ -36,8 +39,6 @@ int testSolveSquare();
 
 int main()
 {
-	int variable; 
-	double a = 0, b = 0, c = 0; 
 	double x1 = 0, x2 = 0;
 	int nRoots = 0;
 
@@ -47,15 +48,9 @@ int main()
 	#endif
 
 
-	printf("Enter a, b, c. \na: ");
-	scanf("%lg", &a);
-	printf("b: ");
-	scanf("%lg", &b);
-	printf("c: ");
-	scanf("%lg", &c);
-	printf("\n");
+	double *koeffs = getNewData("Enter a, b, c:", 3);
 
-	nRoots = SolveSquare(a, b, c, &x1, &x2);
+	nRoots = SolveSquare(koeffs[0], koeffs[1], koeffs[2], &x1, &x2);
 	switch(nRoots)
 	{
 		case 0:
@@ -75,6 +70,7 @@ int main()
 			break;		
 	}
 
+	free(koeffs);
 
 	return 0;
 }
@@ -97,10 +93,11 @@ int testSolveSquare()
 
 	printf("\nTest of SolveSquare is started.\n");
 
+	const int INTERVAL = 100;
 	//test's body	
-	for(a = -1000; a < 1000; ++a)
-		for(b = -1000; b < 1000; ++b)
-			for(c = -1000; c < 1000; ++c)
+	for(a = -INTERVAL; a < INTERVAL; ++a)
+		for(b = -INTERVAL; b < INTERVAL; ++b)
+			for(c = -INTERVAL; c < INTERVAL; ++c)
 	{
 		bool errorOccured = false;
 		nRoots = SolveSquare(a, b,c, &x1, &x2);
