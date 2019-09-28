@@ -18,7 +18,7 @@ void FillDArray(double arr[], size_t nElements, double value)
 }
 
 /*!
- * \brief Выводит массив в стандартный вывод
+ * \brief Выводит массив double-ов в стандартный вывод
  *
  * \param arr[] Массив, который нужно вывести
  * \param from Начиная с какого индекса выводит
@@ -40,7 +40,50 @@ void printDArray(const double arr[], size_t from, size_t to)
 	printf("\n");
 }
 
+/*!
+ * \brief Выводит массив int-ов в стандартный вывод
+ *
+ * \version 1.0
+ *
+ * В данной версии программы не используется, но пусть будет на всякий случай
+ *
+ * \param arr[] Массив, который нужно вывести
+ * \param from Начиная с какого индекса выводит
+ * \param to Заканчивая каким
+ *
+ * Пример использования:
+ * \code
+ * int values[] = {1, 7, 3, 8. 6};
+ * printArray(values, 0, 4);
+ * \endcode
+ */
+void printArray(const int arr[], size_t from, size_t to)
+{
+	for(int k = from; k <= to; ++k)
+		printf("  (%4d) ", k);
+	printf("\n");
+	for(int k = from; k <= to; ++k)
+		printf(" %7d ", arr[k]); 
+	printf("\n");
+}
 
+/*!
+ * \brief Считывает из стандартного ввода указанное число чисел в заданный массив
+ *
+ * \param prompt Строка, которая напечатается в консоли для приглашения пользователя ввести числа
+ * \param mas Массив, в который нужно записать считанные числа
+ * \param nElements Число чисел, которые нужно считать. Размер переданного массива должен быть
+ * не меньше nElements
+ *
+ * Пример использования:
+ * \code
+ * const int nElements = 3;
+ * double coeffs[nElements] = {};
+ * Input("Enter x, y, z:", coeffs, nElements);
+ * 
+ *	printDArray(coeffs, 0, nElements - 1);
+ * \endcode
+ */
 void Input(const char prompt[], double mas[], size_t nElements) //Version 1
 {
 	assert(prompt != NULL);
@@ -60,7 +103,29 @@ void Input(const char prompt[], double mas[], size_t nElements) //Version 1
 	}
 }
 
-
+/*!
+ * \brief Считывает из стандартного ввода указанное число чисел и возвращает массив
+ *
+ * В отличие от функции Input(), массив создается динамически внутри самой функции, поэтому создавать
+ * массив заранее и передавать его адрес в getNewData() не требуется
+ * 
+ * \warning Обязательно освобождайте память, выделенную под массив, после использования!
+ *
+ * \param prompt Строка, которая напечатается в консоли для приглашения пользователя ввести числа
+ * \param mas Массив, в который нужно записать считанные числа
+ * \param nElements Число чисел, которые нужно считать. Размер переданного массива должен быть
+ * не меньше nElements
+ *
+ * Пример использования:
+ * \code
+ * const int nElements = 3;
+ * double *coeffs = getNewData("Enter x, y, z:", nElements);
+ * printDArray(coeffs, 0, nElements - 1);
+ * 
+ * free(coeffs);
+ * coeffs = NULL;	
+ * \endcode
+ */
 double *getNewData(const char prompt[], size_t nElements) //Version 2
 {
 	assert(prompt != NULL);

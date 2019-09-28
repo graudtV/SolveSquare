@@ -48,9 +48,9 @@ int main()
 	#endif
 
 
-	double *koeffs = getNewData("Enter a, b, c:", 3);
+	double *coeffs = getNewData("Enter a, b, c:", 3);
 
-	nRoots = SolveSquare(koeffs[0], koeffs[1], koeffs[2], &x1, &x2);
+	nRoots = SolveSquare(coeffs[0], coeffs[1], coeffs[2], &x1, &x2);
 	switch(nRoots)
 	{
 		case 0:
@@ -70,7 +70,8 @@ int main()
 			break;		
 	}
 
-	free(koeffs);
+	free(coeffs);
+	coeffs = NULL;
 
 	return 0;
 }

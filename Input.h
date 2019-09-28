@@ -1,3 +1,8 @@
+/*!
+ * \file 
+ * \brief Заголовочный файл с удобными функциями для ввода-вывода числовых массивов
+ */
+
 #ifndef INPUT_FUNCTIONS
 #define INPUT_FUNCTIONS
 
