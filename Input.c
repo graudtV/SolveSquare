@@ -5,13 +5,15 @@
 /*!
  * \brief Заполняет массив чисел типа double каким-либо числом
  *
+ * В данной версии программы не используется, но пусть будет на всякий случай
+ *
  * \param [out] arr[] Массив, который нужно заполнить
  * \param [in] nElements Количество элементов в массиве. Можно заполнить не все элементы,
  * а только первые nElemets, считая от начала
  * \param [in] value Значение, которое присвоиться каждому элементу массива
  * с индексом от 0 до nElements - 1. В частности, можно присвоить нули или NAN.
  */
-void FillDArray(double arr[], size_t nElements, double value)
+void fillDArray(double arr[], size_t nElements, double value)
 {
 	for(int i = 0; i < nElements; ++i)
 		arr[i] = value;
@@ -79,12 +81,12 @@ void printArray(const int arr[], size_t from, size_t to)
  * \code
  * const int nElements = 3;
  * double coeffs[nElements] = {};
- * Input("Enter x, y, z:", coeffs, nElements);
+ * input("Enter x, y, z:", coeffs, nElements);
  * 
  *	printDArray(coeffs, 0, nElements - 1);
  * \endcode
  */
-void Input(const char prompt[], double mas[], size_t nElements) //Version 1
+void input(const char prompt[], double mas[], size_t nElements) //Version 1
 {
 	assert(prompt != NULL);
 	assert(mas != NULL);
@@ -106,7 +108,7 @@ void Input(const char prompt[], double mas[], size_t nElements) //Version 1
 /*!
  * \brief Считывает из стандартного ввода указанное число чисел и возвращает массив
  *
- * В отличие от функции Input(), массив создается динамически внутри самой функции, поэтому создавать
+ * В отличие от функции input(), массив создается динамически внутри самой функции, поэтому создавать
  * массив заранее и передавать его адрес в getNewData() не требуется
  * 
  * \warning Обязательно освобождайте память, выделенную под массив, после использования!
@@ -136,6 +138,6 @@ double *getNewData(const char prompt[], size_t nElements) //Version 2
 		return NULL;
 	}
 
-	Input(prompt, data, nElements);
+	input(prompt, data, nElements);
 	return data;
 }

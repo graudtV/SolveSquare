@@ -9,7 +9,7 @@
 #define INF_ROOTS -1 //!< SolveSquare() возвращает это значение, если ур-ие имеет бесконечно много корней
 
 int doublesAreEqual(double a, double b, double precision);
-int SolveSquare(double a, double b, double c, double *x1, double *x2);
+int solveSquare(double a, double b, double c, double *x1, double *x2);
 
 #endif
 

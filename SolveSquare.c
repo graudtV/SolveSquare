@@ -2,13 +2,13 @@
  * \file
  * \version 1.0
  * \brief
- *  Включает реализвции функции SolveSquare() и doublesAreEqual()
+ *  Включает реализвции функции solveSquare() и doublesAreEqual()
  */
 
 #include <stdio.h>
 #include <assert.h>
 #include <math.h>
-#include "SolveSquare.h"
+#include "solveSquare.h"
 
 /*!
  * \brief Проверяет, равны ли два числа типа double
@@ -42,7 +42,7 @@ int doublesAreEqual(double a, double b, double precision)
 
 	Если у уравнения 2 различных корня, то гарантируется, что x1 < x2.
 */
-int SolveSquare(double a, double b, double c, double *x1, double *x2)
+int solveSquare(double a, double b, double c, double *x1, double *x2)
 {
 	const double PRECISION = 0.001;
 

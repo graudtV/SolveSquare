@@ -2,9 +2,9 @@
  * \file
  * \version 1.1 Теперь ввод реализуется через функцию getNewData
  *
- * \brief Файл с примером работы с функцией SolveSquare()
+ * \brief Файл с примером работы с функцией solveSquare()
  * 
- * Программа показывает пример работы с функцией SolveSquare() а также включает возможность
+ * Программа показывает пример работы с функцией solveSquare() а также включает возможность
  * юнит-тестирования этой функции
  * 
  * Сначала проводится юнит-тест (если он включен параметром TEST_SOLVESQUARE), далее программа считывает из стандартного ввода 3 числа - коэффициенты a, b, c - и 
@@ -13,8 +13,8 @@
 
 #include <stdio.h>
 #include "stdlib.h" //for function free()
-#include "SolveSquare.h"
-#include "Input.h"
+#include "solveSquare.h"
+#include "input.h"
 
 #define bool short //!< Введено для удобства, т.к. в C нет типа bool.
 #define true 1
@@ -22,7 +22,7 @@
 
 
 /*!
- * \brief Включает/выключает режим юнит-тестирования функции SolveSquare()
+ * \brief Включает/выключает режим юнит-тестирования функции solveSquare()
  *
  * При значении 0 тест выключен.
  * При значении 1 - включен1
@@ -50,7 +50,7 @@ int main()
 
 	double *coeffs = getNewData("Enter a, b, c:", 3);
 
-	nRoots = SolveSquare(coeffs[0], coeffs[1], coeffs[2], &x1, &x2);
+	nRoots = solveSquare(coeffs[0], coeffs[1], coeffs[2], &x1, &x2);
 	switch(nRoots)
 	{
 		case 0:
@@ -78,7 +78,7 @@ int main()
 
 #if (TEST_SOLVESQUARE)
 /*!
- * \brief Функция для тестирования SolveSquare()
+ * \brief Функция для тестирования solveSquare()
  *
  * В случае возникновения ошибки выводит сообщение с пояснениями в стандартный вывод и возвращает 1.
  * \returns 0 Если тест прошёл успешно
@@ -92,7 +92,7 @@ int testSolveSquare()
 	double x1 = 0, x2 = 0;
 	int nRoots = 0;
 
-	printf("\nTest of SolveSquare is started.\n");
+	printf("\nTest of solveSquare is started.\n");
 
 	const int INTERVAL = 100;
 	//test's body	
@@ -101,7 +101,7 @@ int testSolveSquare()
 			for(c = -INTERVAL; c < INTERVAL; ++c)
 	{
 		bool errorOccured = false;
-		nRoots = SolveSquare(a, b,c, &x1, &x2);
+		nRoots = solveSquare(a, b,c, &x1, &x2);
 
 		if(nRoots != 1 && nRoots != 2 && nRoots !=0 && nRoots != INF_ROOTS)
 		{
@@ -141,7 +141,7 @@ int testSolveSquare()
 
 		if(errorOccured)
 		{
-			printf("SolveSquare works incorrectly!\n");
+			printf("solveSquare works incorrectly!\n");
 			printf("Input values:\n a: %lg; \n b: %lg; \n c: %lg; \n", a, b, c);
 			printf("Output values:\n nRoots: %d; \n x1: %lg; \n x2: %lg; \n", nRoots, x1, x2);
 			return 1; 
